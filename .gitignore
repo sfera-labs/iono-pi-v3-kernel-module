@@ -1,4 +1,6 @@
-/DEV-*
+_DEV/
+
+/DTS_NAME
 
 .vscode/
 

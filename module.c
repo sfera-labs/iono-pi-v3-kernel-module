@@ -22,11 +22,11 @@
 #include <linux/spi/spi.h>
 #include <linux/version.h>
 
-#include "atecc/atecc.h"
-#include "commons/commons.h"
-#include "gpio/gpio.h"
+#include "commons/atecc/atecc.h"
+#include "commons/gpio/gpio.h"
+#include "commons/utils/utils.h"
+#include "commons/wiegand/wiegand.h"
 #include "pcf2131/pcf2131.h"
-#include "wiegand/wiegand.h"
 
 #define MCP3462_CMD_DEV_ADDR 0b01000000
 
@@ -2389,6 +2389,6 @@ static struct platform_driver ionopi_driver = {
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Sfera Labs - http://sferalabs.cc");
 MODULE_DESCRIPTION("Iono Pi v3 driver module");
-MODULE_VERSION("1.0");
+MODULE_VERSION(IONOPI_V3_MODULE_VERSION);
 
 module_platform_driver(ionopi_driver);

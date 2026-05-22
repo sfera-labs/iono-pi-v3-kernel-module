@@ -2,47 +2,66 @@
 
 Raspberry Pi OS (Debian) Kernel module for [Iono Pi v3](https://www.sferalabs.cc/product/iono-pi-v3/).
 
-## Compile and Install
 
-*For installation on Ubuntu [read this](https://github.com/sfera-labs/knowledge-base/blob/main/raspberrypi/kernel-modules-ubuntu.md).*
+## Installation
 
 Make sure your system is updated:
 
     sudo apt update
     sudo apt upgrade
 
-If you are using a **32-bit** OS, add to `/boot/firmware/config.txt` the following line: [[why?](https://github.com/raspberrypi/firmware/issues/1795)]
+If you are using a **32-bit** OS, add to `/boot/firmware/config.txt` (`/boot/config.txt` in older versions) the following line: [[why?](https://github.com/raspberrypi/firmware/issues/1795)]
 
     arm_64bit=0
-    
+
 Reboot:
 
     sudo reboot
 
-After reboot, install git and the kernel headers:
- 
-    sudo apt install git linux-headers-$(uname -r)
+After reboot, install required tools:
+
+    sudo apt install git device-tree-compiler dkms linux-headers-$(uname -r)
 
 Clone this repo:
 
     git clone --depth 1 https://github.com/sfera-labs/iono-pi-v3-kernel-module.git
-
-Make and install:
-
+    
     cd iono-pi-v3-kernel-module
+
+### Recommended installation mode: DKMS
+
+This is the recommended mode. It automatically rebuilds and reinstalls the module when new kernel versions are installed.
+
+Register, build and install with DKMS:
+
+    sudo dkms add .
+    sudo dkms build -m ionopi-v3 -v $(cat VERSION)
+    sudo dkms install -m ionopi-v3 -v $(cat VERSION)
+
+### Alternative installation mode: manual install for running kernel only
+
+<details>
+
+<summary>Show</summary>
+
+Use this method only if you specifically want to install for the current running kernel version only.
+
+Compile and install:
+
     make clean
     make
     sudo make install
-    
-Compile the Device Tree and install it:
 
-    dtc -@ -Hepapr -I dts -O dtb -o ionopi-v3.dtbo ionopi-v3.dts
-    sudo cp ionopi-v3.dtbo /boot/firmware/overlays/
-    
+Manual mode does not provide automatic rebuild on kernel upgrades.
+
+</details>
+
+### Enable overlay at boot
+
 Add to `/boot/firmware/config.txt` the following line:
 
     dtoverlay=ionopi-v3
-    
+
 If you want to use DT1 as 1-Wire bus, add this line too:
 
     dtoverlay=w1-gpio
@@ -51,18 +70,17 @@ If you are using a Raspberry Pi 5 you should disable its RTC. Add this line:
 
     dtparam=rtc=off
 
-Optionally, to access the `/sys/class/ionopi/` files without superuser privileges, create a new group "ionopi" and set it as the module owner group by adding a **udev** rule:
+### Optional non-root access to `/sys/class/ionopi`
+
+The install process places `99-ionopi-v3.rules`, which sets owner group `ionopi` for sysfs entries. To access the sysfs interface without superuser privileges, create the group and add your user, e.g. for user "pi":
 
     sudo groupadd ionopi
-    sudo cp 99-ionopi.rules /etc/udev/rules.d/
-
-and add your user to the group, e.g., for user "pi":
-
     sudo usermod -a -G ionopi pi
 
 Reboot:
 
     sudo reboot
+
 
 ## Usage
 
