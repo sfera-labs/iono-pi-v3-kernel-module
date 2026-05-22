@@ -2,6 +2,8 @@
 
 Raspberry Pi OS (Debian) Kernel module for [Iono Pi v3](https://www.sferalabs.cc/product/iono-pi-v3/).
 
+[![Build tests [stable oldstable]](https://github.com/sfera-labs/iono-pi-v3-kernel-module/actions/workflows/build-apt.yml/badge.svg)](https://github.com/sfera-labs/iono-pi-v3-kernel-module/actions/workflows/build-apt.yml)
+[![Build tests [firmware]](https://github.com/sfera-labs/iono-pi-v3-kernel-module/actions/workflows/build-fw.yml/badge.svg)](https://github.com/sfera-labs/iono-pi-v3-kernel-module/actions/workflows/build-fw.yml)
 
 ## Installation
 
