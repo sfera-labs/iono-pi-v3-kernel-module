@@ -2271,6 +2271,11 @@ static void cleanup(struct platform_device* pdev) {
   for (i = 0; i < GPIO_SIZE; i++) {
     gpioFree(&_gpio[i]);
   }
+
+  for (i = 0; i < ARRAY_SIZE(_gpio_dt); i++) {
+    gpioFree(&_gpio_dt[i]);
+  }
+
   for (i = 0; i < DI_SIZE; i++) {
     gpioFreeDebounce(&_gpio_din[i]);
   }
