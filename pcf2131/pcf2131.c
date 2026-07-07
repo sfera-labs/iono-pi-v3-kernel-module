@@ -231,7 +231,7 @@ static int pcf21xx_rtc_read_time_opt_check(struct device* dev,
   ret = regmap_bulk_read(pcf21xx->regmap, pcf21xx->cfg->reg_time_base, buf,
                          sizeof(buf));
   if (ret) {
-    dev_err(dev, "%s: read error\n", __func__);
+    dev_dbg(dev, "%s: read error\n", __func__);
     return ret;
   }
 
