@@ -182,7 +182,7 @@ The sysfs interface is available in `/sys/class/ionopi/watchdog/`:
             <td>off_time</td>
             <td>Raspberry Pi power-off duration after watchdog reset</td>
             <td>R/W</td>
-            <td>5 ... (86399 - timeout)</td>
+            <td>1 ... (86399 - timeout)</td>
             <td>Value in seconds. Default: 5</td>
         </tr>
         <!-- ------------- -->
@@ -528,18 +528,6 @@ A write operation must occur before a read is allowed.
         <tr>
             <td>1</td>
             <td>Enabled: an overloaded channel is turned off immediately</td>
-        </tr>
-        <!-- ------------- -->
-        <tr>
-            <td rowspan=2>flag</td>
-            <td rowspan=2>Outputs fault flag</td>
-            <td rowspan=2>R</td>
-            <td>0</td>
-            <td>No output in fault state</td>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>Output(s) in fault state</td>
         </tr>
         <!-- ------------- -->
         <tr>

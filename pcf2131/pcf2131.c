@@ -1056,7 +1056,7 @@ ssize_t devAttrWatchdogOffTime_store(struct device* dev,
     return ret;
   }
 
-  if (val < 5 || val > (86400 - _instance->wdd.timeout - 1)) {
+  if (val < 1 || val > (86400 - _instance->wdd.timeout - 1)) {
     return -EINVAL;
   }
 

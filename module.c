@@ -1187,20 +1187,6 @@ static struct DeviceAttrBean devAttrBeansDigitalOut[] = {
             {
                 .attr =
                     {
-                        .name = "flag",
-                        .mode = 0440,
-                    },
-                .show = devAttrGpio_show,
-                .store = NULL,
-            },
-        .data = &_gpio[DO_FLAG],
-    },
-
-    {
-        .devAttr =
-            {
-                .attr =
-                    {
                         .name = "o1",
                         .mode = 0660,
                     },
