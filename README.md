@@ -293,7 +293,7 @@ The sysfs interface is available in `/sys/class/ionopi/watchdog/`:
             <td>osr</td>
             <td>MCP3461R ADC oversampling ratio configuration value</td>
             <td>R/W</td>
-            <td>1 ... 15</td>
+            <td>0 ... 15</td>
             <td>Refer to the MCP3461R datasheet. Default: 3</td>
         </tr>
         <!-- ------------- -->
